@@ -1,0 +1,11 @@
+<div class="lang-switcher">
+    <div>
+        <span class="lang"
+              (click)="changeCurrent(langs.ru)"
+              [ngClass]="{active: currentLang==langs.ru}"><span class="flag-icon flag-icon-ru "></span> Ru</span>
+        |
+        <span class="lang"
+              (click)="changeCurrent(langs.en)"
+              [ngClass]="{active: currentLang==langs.en}"><span class="flag-icon flag-icon-gb "></span> En</span>
+    </div>
+</div>
