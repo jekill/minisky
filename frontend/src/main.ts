@@ -5,6 +5,7 @@ import {enableProdMode} from '@angular/core';
 import {AppModule} from './app/';
 import {bootloader} from '@angularclass/hmr';
 
+
 if (__IS_PROD_MODE__) {
     enableProdMode();
 }

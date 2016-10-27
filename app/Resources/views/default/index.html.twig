@@ -1,21 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <h1>Let's go...</h1>
 
-        <msky-application>
-            <div class="msky-progress">
-                <div class="msky-progress__loading">
-                    Loading...
-                    <i class="fa fa-spinner fa-pulse"></i>
-                </div>
-                <progress id="msky-start-app-progress"
-                          class="progress progress-striped progress-info progress-animated" value="15" max="100">
-                </progress>
+    <msky-application>
+        <div class="msky-progress">
+            <div class="msky-progress__loading">
+                Loading...
+                <i class="fa fa-spinner fa-pulse"></i>
             </div>
-        </msky-application>
-    </div>
+            <progress id="msky-start-app-progress"
+                      class="progress progress-striped progress-info progress-animated" value="15" max="100">
+            </progress>
+        </div>
+    </msky-application>
 {% endblock %}
 
 {% block javascripts %}

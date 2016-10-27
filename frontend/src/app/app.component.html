@@ -1,4 +1,17 @@
-<h1>Words test</h1>
+<msky-translate lang="en">Hello parni!</msky-translate>
+<msky-translate lang="ru">Хелло парни!</msky-translate>
+<div class="row">
+    <div class="col-sm-2">
+        <msky-lang-switcher
+                [currentLang]="uiLang|async" (changeCurrentHandler)="onChangeUiLang($event)"></msky-lang-switcher>
+        <div *ngIf="!(isAuthenticated|async)">
+                no score
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <msky-login-form></msky-login-form>
+    </div>
+</div>
 
-<msky-lang-switcher  [currentLang]="uiLang|async" (changeCurrentHandler)="onChangeUiLang($event)"></msky-lang-switcher>
-<msky-login-form></msky-login-form>
+
+

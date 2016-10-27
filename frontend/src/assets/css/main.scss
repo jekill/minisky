@@ -5,6 +5,14 @@
 @import "../../../node_modules/bootstrap/scss/progress";
 @import "../../../node_modules/bootstrap/scss/grid";
 
+@import "../../../node_modules/bootstrap/scss/buttons";
+
+@import "../../../node_modules/bootstrap/scss/forms";
+
+@import "../../../node_modules/bootstrap/scss/nav";
+@import "../../../node_modules/bootstrap/scss/navbar";
+
+
 body {
   header {
     margin-bottom: 40px;
@@ -53,6 +61,12 @@ header{
         border-radius: 5px;
       }
     }
+  }
+}
+
+@media (max-width: 800px) {
+  .menu{
+    display: none;
   }
 }
 

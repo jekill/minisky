@@ -12,6 +12,7 @@ import {NgRedux, NgReduxModule} from "ng2-redux";
 import {IAppState} from "./store/state";
 import {AppStateService} from "./store/appstate.service";
 import {LangSwitcherComponent} from "./lang-switcher/lang-switcher.component";
+import {TranslateService} from "./translate/translate.service";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {LangSwitcherComponent} from "./lang-switcher/lang-switcher.component";
         NgReduxModule
     ],
     providers: [
-        AppStateService
+        AppStateService,
+        TranslateService
     ],
     bootstrap: [AppComponent]
 })
