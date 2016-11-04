@@ -17,7 +17,7 @@ export class TranslateComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.isVisible = (this.lang === Languages[this.translateService.defaultLang]);
+        this.isVisible = (this.lang === Languages[this.translateService.currentLang]);
 
         console.log("++++",
             this.lang ,

@@ -8,11 +8,11 @@ import {createNewHosts, createInputTransfer, removeNgStyles} from "@angularclass
 import {AppComponent} from './app.component';
 import {TranslateComponent} from './translate/translate.component';
 import {LoginFormComponent} from "./login-form/login-form.component";
-import {NgRedux, NgReduxModule} from "ng2-redux";
-import {IAppState} from "./store/state";
+import {NgReduxModule} from "ng2-redux";
 import {AppStateService} from "./store/appstate.service";
 import {LangSwitcherComponent} from "./lang-switcher/lang-switcher.component";
 import {TranslateService} from "./translate/translate.service";
+import {routedComponents, routing} from "./app.routing";
 
 
 @NgModule({
@@ -20,13 +20,16 @@ import {TranslateService} from "./translate/translate.service";
         AppComponent,
         TranslateComponent,
         LoginFormComponent,
-        LangSwitcherComponent
+        LangSwitcherComponent,
+        ...routedComponents
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        NgReduxModule
+        NgReduxModule,
+        routing,
+        HttpModule
     ],
     providers: [
         AppStateService,

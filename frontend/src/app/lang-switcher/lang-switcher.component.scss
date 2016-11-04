@@ -1,6 +1,12 @@
 $flag-icon-css-path: '/assets/compiled/flags';
 @import "../../../node_modules/flag-icon-css/sass/flag-icon";
 
+.lang-switcher{
+  border: 1px dotted #E0E0E0;
+  border-radius: 3px;
+  padding: 10px;
+}
+
 .flag-icon{
   border: 1px solid #EEE;
   border-radius: 3px;
