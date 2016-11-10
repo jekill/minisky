@@ -1,0 +1,11 @@
+.score-block{
+  background: orange;
+  padding: 20px 10px;
+  display: block;
+  border-radius: 3px;
+  text-align: center;
+
+  &__value{
+    border: 1px;
+  }
+}

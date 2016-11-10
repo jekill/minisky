@@ -1,0 +1,23 @@
+.app-menu{
+
+    display: block;
+
+
+}
+
+.app-menu-nav{
+
+    display: flex;
+    &,&__item{
+        list-style: none;
+        padding: 0;
+    }
+
+    &__item{
+        padding: 3px 5px;
+        &_active{
+            color: #AAAAAA;
+        }
+    }
+
+}

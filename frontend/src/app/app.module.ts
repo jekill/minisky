@@ -13,6 +13,8 @@ import {AppStateService} from "./store/appstate.service";
 import {LangSwitcherComponent} from "./lang-switcher/lang-switcher.component";
 import {TranslateService} from "./translate/translate.service";
 import {routedComponents, routing} from "./app.routing";
+import {ScoreBlockComponent} from "./score-block/score-block.componet";
+import {AppMenuComponent} from "./app-menu/app-menu.component";
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import {routedComponents, routing} from "./app.routing";
         TranslateComponent,
         LoginFormComponent,
         LangSwitcherComponent,
+        ScoreBlockComponent,
+        AppMenuComponent,
         ...routedComponents
     ],
     imports: [

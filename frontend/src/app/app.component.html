@@ -1,17 +1,17 @@
 <div class="row">
     <div class="col-sm-12 col-md-3">
         <msky-lang-switcher
-                [currentLang]="uiLang|async" (changeCurrentHandler)="onChangeUiLang($event)"></msky-lang-switcher>
+                [currentLang]="uiLang|async" (changeCurrentHandler)="onChangeUiLang($event)">
+        </msky-lang-switcher>
+
+        <msky-app-menu></msky-app-menu>
+
         <div *ngIf="!(isAuthenticated|async)">
-            no score
+            <msky-score-block></msky-score-block>
         </div>
+
     </div>
     <div class="col-sm-12 col-md-9">
-        <ul>
-            <li><a routerLink="/login">login</a></li>
-            <li><a routerLink="/logout">logout</a></li>
-            <li><a routerLink="/start-test">Start</a></li>
-        </ul>
 
         <router-outlet></router-outlet>
     </div>
