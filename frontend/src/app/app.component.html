@@ -4,7 +4,7 @@
                 [currentLang]="uiLang|async" (changeCurrentHandler)="onChangeUiLang($event)">
         </msky-lang-switcher>
 
-        <msky-app-menu></msky-app-menu>
+        <msky-app-menu [isAuthenticated]="(isAuthenticated|async)"></msky-app-menu>
 
         <div *ngIf="!(isAuthenticated|async)">
             <msky-score-block></msky-score-block>

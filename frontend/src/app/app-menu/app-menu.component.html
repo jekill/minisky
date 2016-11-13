@@ -1,17 +1,31 @@
 <nav class="app-menu">
     <ul class="app-menu-nav">
-        <li class="app-menu-nav__item">
+        <li class="app-menu-nav__item" *ngIf="!isAuthenticated">
             <a routerLink="/login" routerLinkActive="app-menu-nav__item_active">
-                <i class="fa fa-sign-in"></i> login
+                <i class="fa fa-sign-in"></i>
+                <msky-translate lang="en">Login</msky-translate>
+                <msky-translate lang="ru">Войти</msky-translate>
+            </a>
+        </li>
+        <li class="app-menu-nav__item" *ngIf="isAuthenticated">
+            <a routerLink="/logout" routerLinkActive="app-menu-nav__item_active">
+                <i class="fa fa-power-off"></i>
+                <msky-translate lang="en">Logout</msky-translate>
+                <msky-translate lang="ru">Выйти</msky-translate>
             </a>
         </li>
         <li class="app-menu-nav__item">
-            <a routerLink="/logout" routerLinkActive="app-menu-nav__item_active">
-                <i class="fa fa-power-off"></i>
-                logout</a>
+            <a routerLink="/start-test" routerLinkActive="app-menu-nav__item_active">
+                <msky-translate lang="en">Start</msky-translate>
+                <msky-translate lang="ru">Начать</msky-translate>
+            </a>
         </li>
-        <li class="app-menu-nav__item"><a routerLink="/start-test" routerLinkActive="app-menu-nav__item_active">Start</a></li>
 
-        <li class="app-menu-nav__item"><a routerLink="/start-test" routerLinkActive="app-menu-nav__item_active">Settings</a></li>
+        <li class="app-menu-nav__item" *ngIf="isAuthenticated">
+            <a routerLink="/start-test" routerLinkActive="app-menu-nav__item_active">
+                <msky-translate lang="en">Settings</msky-translate>
+                <msky-translate lang="ru">Настройки</msky-translate>
+            </a>
+        </li>
     </ul>
 </nav>

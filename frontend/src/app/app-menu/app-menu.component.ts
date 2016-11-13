@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 
 @Component({
     selector: 'msky-app-menu',
@@ -6,5 +6,8 @@ import {Component} from "@angular/core";
     styleUrls: ['./app-menu.component.scss']
 })
 export class AppMenuComponent {
+
+    @Input()
+    private isAuthenticated: boolean = false;
 
 }

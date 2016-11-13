@@ -1,6 +1,7 @@
 import {Routes, RouterModule} from "@angular/router";
 import {LoginPageComponent} from "./pages/login.page";
 import {StartTestPageComponent} from "./pages/start-test.page";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 const routes: Routes = [
     {
@@ -10,7 +11,8 @@ const routes: Routes = [
     },
     {
         path: 'start-test',
-        component: StartTestPageComponent
+        component: StartTestPageComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'login',

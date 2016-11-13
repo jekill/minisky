@@ -15,6 +15,8 @@ import {TranslateService} from "./translate/translate.service";
 import {routedComponents, routing} from "./app.routing";
 import {ScoreBlockComponent} from "./score-block/score-block.componet";
 import {AppMenuComponent} from "./app-menu/app-menu.component";
+import {AuthService} from "./services/auth.service";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import {AppMenuComponent} from "./app-menu/app-menu.component";
     ],
     providers: [
         AppStateService,
-        TranslateService
+        TranslateService,
+        AuthService,
+        AuthGuardService
     ],
     bootstrap: [AppComponent]
 })
