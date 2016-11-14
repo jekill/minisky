@@ -6,9 +6,12 @@
 
         <msky-app-menu [isAuthenticated]="(isAuthenticated|async)"></msky-app-menu>
 
-        <div *ngIf="!(isAuthenticated|async)">
+        <div *ngIf="(isAuthenticated|async)">
+            <msky-user-info [user]="user|async"></msky-user-info>
             <msky-score-block></msky-score-block>
         </div>
+
+        <button class="btn" (click)="authService.authenticate('Sponge Bob')">auth</button>
 
     </div>
     <div class="col-sm-12 col-md-9">

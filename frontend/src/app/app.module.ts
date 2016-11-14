@@ -17,6 +17,7 @@ import {ScoreBlockComponent} from "./score-block/score-block.componet";
 import {AppMenuComponent} from "./app-menu/app-menu.component";
 import {AuthService} from "./services/auth.service";
 import {AuthGuardService} from "./services/auth-guard.service";
+import {UserInfoComponent} from "./user-info/user-info.component";
 
 
 @NgModule({
@@ -27,15 +28,15 @@ import {AuthGuardService} from "./services/auth-guard.service";
         LangSwitcherComponent,
         ScoreBlockComponent,
         AppMenuComponent,
+        UserInfoComponent,
         ...routedComponents
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        NgReduxModule,
+        NgReduxModule.forRoot(),
         routing,
-        HttpModule
     ],
     providers: [
         AppStateService,

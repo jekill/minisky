@@ -39,7 +39,7 @@ const config = {
 
             {test: /\.html$/, loaders: ['raw-loader']},
             // {test: /src\/assets\/css\/.+\.scss$/, loader: ExtractTextPlugin.extract("style", "css!sass-loader")},
-            {test: /src\/assets\/css\/.+\.scss$/, loader: extractCSS.extract(["css", "sass"])},
+            {test: /src\/assets\/css\/.+\.scss$/, loader: extractCSS.extract(["css-loader", "sass-loader"])},
             {test: /src\/app\/.+\.scss$/, loader: "raw-loader!sass-loader", exclude: /src\/assets\/css/},
             {test: /.+\.css$/, loader: "raw-loader", exclude: /src\/assets\/css/},
             {test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/, loader: 'url-loader'},

@@ -2,6 +2,8 @@ import {combineReducers, Reducer, Action} from "redux";
 import {IAppState} from "./state";
 import {Languages} from "../translate/languages";
 import {AuthActions} from "./actions/auth.actions";
+import {ActionPayload} from "./actions/action-payload";
+import {User} from "../model/user";
 
 const uiLang = (state: Languages = Languages.en, action: any) => {
     switch (action.type) {
@@ -24,4 +26,29 @@ const isAuthenticated = (state: boolean = false, action: Action) => {
 };
 
 
-export const rootReducer: Reducer<IAppState> = combineReducers<IAppState>({uiLang, isAuthenticated});
+const authToken = (state: string = null, action: ActionPayload) => {
+    switch (action.type) {
+        case AuthActions.AUTH_UPDATE_TOKEN:
+            return action.payload;
+    }
+
+    return state;
+};
+
+const user = (state: User = null, action: ActionPayload) => {
+    switch (action.type) {
+        case AuthActions.AUTH_UPDATE_USER:
+            return action.payload;
+    }
+
+    return state;
+};
+
+
+const reducers = {
+    uiLang,
+    isAuthenticated,
+    authToken,
+    user
+};
+export const rootReducer: Reducer<IAppState> = combineReducers<IAppState>(reducers);

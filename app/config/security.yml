@@ -2,10 +2,15 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: plain
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
+        db_provider:
+            entity:
+                class: AppBundle\Entity\User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -22,3 +27,26 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+        login:
+            pattern:  ^/api/token
+            stateless: true
+            anonymous: true
+            form_login: false
+#            form_login:
+#                check_path:               /api/token
+#                success_handler:          lexik_jwt_authentication.handler.authentication_success
+#                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+#                require_previous_session: false
+
+        api:
+            pattern:   ^/api
+            stateless: true
+            provider: db_provider
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+    access_control:
+        - { path: ^/api/token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }

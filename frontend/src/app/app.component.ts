@@ -4,6 +4,7 @@ import {Languages} from "./translate/languages";
 import {select} from "ng2-redux";
 import {TranslateService} from "./translate/translate.service";
 import {Observable} from "rxjs";
+import {AuthService} from "./services/auth.service";
 
 @Component({
     selector: 'msky-application',
@@ -14,8 +15,11 @@ export class AppComponent implements OnInit {
 
     @select() uiLang: Observable<Languages>;
     @select() isAuthenticated: boolean;
+    @select() user;
 
-    constructor(public stateService: AppStateService, public translateService: TranslateService) {
+    constructor(private stateService: AppStateService,
+                private translateService: TranslateService,
+                private authService: AuthService) {
         this.onChangeUiLang(Languages.en);
     }
 
