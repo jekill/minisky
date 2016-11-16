@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AppStateService} from "../store/appstate.service";
 import {JwtHelper} from "angular2-jwt";
-import {Http} from "@angular/http";
 import {User} from "../model/user";
 import {AuthActions} from "../store/actions/auth.actions";
+import {ApiService} from "./api.service";
 
 
 @Injectable()
@@ -13,18 +13,16 @@ export class AuthService {
     /**
      * jwt token
      */
-    private token: string;
     private jwtHelper = new JwtHelper();
     private currentUser: User;
 
-    constructor(private appState: AppStateService, private http: Http) {
+
+    constructor(private appState: AppStateService,
+                private  apiService: ApiService) {
         appState.store.select('isAuthenticated').subscribe((val: boolean) => {
             this._isAuthenticated = val;
         });
 
-        appState.store.select('authToken').subscribe((val: string) => {
-            this.token = val;
-        });
 
         appState.store.select('user').subscribe((val: User) => {
             this.currentUser = val;
@@ -32,9 +30,9 @@ export class AuthService {
 
     }
 
+
     public authenticate(username) {
-        this.http
-            .post("/api/token", {username})
+        this.apiService.authenticateRequest(username)
             .toPromise()
             .then((res) => {
                 const data = res.json();
@@ -52,7 +50,6 @@ export class AuthService {
     }
 
     public isAuthenticated() {
-
         return this._isAuthenticated;
     }
 
@@ -73,4 +70,6 @@ export class AuthService {
     private updateUser(user: User) {
         this.appState.store.dispatch(AuthActions.createUpdateUser(user));
     }
+
+
 }

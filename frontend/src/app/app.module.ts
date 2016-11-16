@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, ApplicationRef} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, Http} from '@angular/http';
 
 import {createNewHosts, createInputTransfer, removeNgStyles} from "@angularclass/hmr";
 
@@ -18,7 +18,20 @@ import {AppMenuComponent} from "./app-menu/app-menu.component";
 import {AuthService} from "./services/auth.service";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {UserInfoComponent} from "./user-info/user-info.component";
+import {AuthHttp, AuthConfig} from "angular2-jwt";
+import {ApiService} from "./services/api.service";
+import {TokenService} from "./services/token.serive";
 
+
+function authHttpFactory(http: Http, tokenService:TokenService) {
+    return new AuthHttp(new AuthConfig({
+        noJwtError: true,
+        globalHeaders: [{'Accept': 'application/json'}],
+        tokenGetter: (() => {
+            return tokenService.getToken();
+        }),
+    }), http);
+}
 
 @NgModule({
     declarations: [
@@ -35,6 +48,7 @@ import {UserInfoComponent} from "./user-info/user-info.component";
         BrowserModule,
         FormsModule,
         HttpModule,
+
         NgReduxModule.forRoot(),
         routing,
     ],
@@ -42,7 +56,14 @@ import {UserInfoComponent} from "./user-info/user-info.component";
         AppStateService,
         TranslateService,
         AuthService,
-        AuthGuardService
+        AuthGuardService,
+        TokenService,
+        {
+            provide: AuthHttp,
+            useFactory: authHttpFactory,
+            deps: [Http, TokenService]
+        },
+        ApiService,
     ],
     bootstrap: [AppComponent]
 })
