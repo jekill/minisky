@@ -9,6 +9,7 @@ services:
         factory: ["@doctrine.orm.entity_manager","getRepository"]
         arguments: [ AppBundle\Entity\Word ]
 
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.tests_helper:
+        class: AppBundle\Services\TestsHelper
+        arguments: ["@app.word.repository"]

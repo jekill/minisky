@@ -2,33 +2,35 @@ import {Component} from "@angular/core";
 import {Http} from "@angular/http";
 import {AuthHttp} from "angular2-jwt";
 import {Word} from "../model/word";
+import {WordsTest} from "../model/WordsTest";
+import {AppStateService} from "../store/appstate.service";
+import {TestActions} from "../store/actions/test.actions";
+import {select} from "ng2-redux";
 
 @Component({
     template: `
 <button class="btn btn-success" (click)="loadWords()">load</button>
-<ul>
-    <li *ngFor="let w of words">
-          {{w.valueEn}}:{{w.valueRu}}
-    </li>        
-</ul>
+
+<div *ngIf="(wordsTest|async)">
+<msky-words-test [wordsTest]="(wordsTest|async)"></msky-words-test>
+</div>
 `
 })
 export class StartTestPageComponent {
 
-    words: Word[];
+    @select(['currentTest', 'wordsTest']) wordsTest;
 
-    constructor(private http: AuthHttp) {
+    constructor(private http: AuthHttp, private state: AppStateService) {
 
     }
 
     loadWords() {
-        this.http.get('/api/words')
+        this.http.post('/api/tests', {})
             .map((res) => {
-                return <Word[]>res.json();
+                return <WordsTest>res.json();
             })
             .subscribe((res) => {
-                console.log("RES2:", res);
-                this.words = res;
+                this.state.store.dispatch(TestActions.createSetCurrentAction(res));
             }, err => {
                 console.log('err:', err);
             });

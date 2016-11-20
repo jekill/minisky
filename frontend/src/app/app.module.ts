@@ -21,6 +21,7 @@ import {UserInfoComponent} from "./user-info/user-info.component";
 import {AuthHttp, AuthConfig} from "angular2-jwt";
 import {ApiService} from "./services/api.service";
 import {TokenService} from "./services/token.serive";
+import {WordsTestComponent} from "./words-test/words-test.component";
 
 
 function authHttpFactory(http: Http, tokenService:TokenService) {
@@ -42,6 +43,7 @@ function authHttpFactory(http: Http, tokenService:TokenService) {
         ScoreBlockComponent,
         AppMenuComponent,
         UserInfoComponent,
+        WordsTestComponent,
         ...routedComponents
     ],
     imports: [

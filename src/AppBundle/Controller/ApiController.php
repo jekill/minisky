@@ -63,65 +63,10 @@ class ApiController extends Controller
      */
     public function getGenerateTestAction(Request $request)
     {
-        /** @var Word[] $words */
-        $words = $this->get('app.word.repository')->findAll();
+        $test = $this->get('app.tests_helper')->generateWordsTest();
 
-        $langWords = [
-            'En' => [],
-            'Ru' => []
-        ];
-
-        $data = [];
-        foreach ($words as $w) {
-            $langWords['En'][] = $w->getValueEn();
-            $langWords['Ru'][] = $w->getValueRu();
-
-            $data[] = [
-                'valueEn' => $w->getValueEn(),
-                'valueRu' => $w->getValueRu()
-            ];
-        }
-        shuffle($data);
-
-        $langs = ['En', 'Ru'];
-
-        $puzzles=[];
-
-        foreach ($data as $w) {
-            $langIndex = rand(0, 1);
-            $lang      = $langs[$langIndex];
-            $langInv   = $langs[(int)!$langIndex];
-            $word      = $w['value' . $lang];
-            $answer    = $w['value' . $langInv];
-            $choices   = $this->fetchTreeRandomUniqueWordsInclude($answer, $langWords[$langInv]);
-
-            $puzzle = [
-                'word'    => $word,
-                'choices' => $choices
-            ];
-
-            $puzzles[]=$puzzle;
-        }
-
-        return new JsonResponse($puzzles, 200);
+        return new JsonResponse($test, 200);
     }
 
-    private function fetchTreeRandomUniqueWordsInclude($includeWord, $fromWordList)
-    {
-        $fromWordList = []+$fromWordList;
-        shuffle($fromWordList);
-        $result = [];
 
-        for ($i = 0; $i < 3 && count($result) < 2; $i++) {
-            $word = $fromWordList[$i];
-            if ($word !== $includeWord) {
-                $result[] = $word;
-            }
-        }
-
-        $result[] = $includeWord;
-        shuffle($result);
-
-        return $result;
-    }
 }

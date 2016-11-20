@@ -1,1 +1,13 @@
 <h1>words test</h1>
+
+
+<ul>
+    <li *ngFor="let p of wordsTest.puzzles">
+        {{p.word}}
+        <ul >
+            <li *ngFor="let choice of p.choices">
+                {{choice}}
+            </li>
+        </ul>
+    </li>
+</ul>

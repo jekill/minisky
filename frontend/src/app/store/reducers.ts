@@ -4,6 +4,7 @@ import {Languages} from "../translate/languages";
 import {AuthActions} from "./actions/auth.actions";
 import {ActionPayload} from "./actions/action-payload";
 import {User} from "../model/user";
+import {wordsTestReducers} from "./reducers/words-test.reducers";
 
 const uiLang = (state: Languages = Languages.en, action: any) => {
     switch (action.type) {
@@ -45,10 +46,15 @@ const user = (state: User = null, action: ActionPayload) => {
 };
 
 
+const currentTest = wordsTestReducers;
+
+
 const reducers = {
     uiLang,
     isAuthenticated,
     authToken,
-    user
+    user,
+    currentTest
 };
+
 export const rootReducer: Reducer<IAppState> = combineReducers<IAppState>(reducers);
