@@ -13,6 +13,15 @@ class UsernameToken implements TokenInterface
 {
     /** @var UserInterface */
     private $user;
+    /**
+     * @var
+     */
+    private $username;
+
+    public function __construct($username){
+
+        $this->username = $username;
+    }
 
     /**
      * String representation of object

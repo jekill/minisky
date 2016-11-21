@@ -10,6 +10,13 @@ services:
         arguments: [ AppBundle\Entity\Word ]
 
 
+    app.user.repository:
+        class: AppBundle\Repository\UserRepository
+        factory: ["@doctrine.orm.entity_manager","getRepository"]
+        arguments: [ AppBundle\Entity\User ]
+
+
+
     app.tests_helper:
         class: AppBundle\Services\TestsHelper
         arguments: ["@app.word.repository"]
